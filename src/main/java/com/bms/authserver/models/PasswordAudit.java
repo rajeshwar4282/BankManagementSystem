@@ -41,7 +41,7 @@ public class PasswordAudit {
 	}
 
 	public void setId(Long pId) {
-		this.id = id;
+		this.id = pId;
 	}
 
 	public CustomerCredentials getCustomerCredentials() {

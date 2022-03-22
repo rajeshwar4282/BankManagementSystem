@@ -24,6 +24,8 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
 	implementation group: 'org.hibernate', name: 'hibernate-validator', version: '8.0.0.Alpha2'
+	testImplementation group: 'org.mockito', name: 'mockito-core', version: '2.1.0'
+	
 		
 }
 

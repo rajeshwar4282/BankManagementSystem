@@ -31,9 +31,8 @@ public class CustomerDetail extends Auditable<String> {
 	@Size(max=25)
 	private String lastName;
 
-	@Column(name="email_id",length = 25)
+	@Column(name="email_id")
 	@NotNull(message = "")
-	@Size(max=25)
 	@Email(message = "Pattern is not correct!")
 	private  String emailId;
 	
@@ -43,14 +42,11 @@ public class CustomerDetail extends Auditable<String> {
 	
 	@Column(name="dob")
 	@NotNull(message = "")
-	@Size(max=25)
 	@Temporal(TemporalType.DATE)
 	private Date dob;
 	
 	@Column(name="contact_no")
 	@NotNull(message = "")
-	@Min(value = 10,message = "")
-	@Max(value = 10,message = "")
 	private String contactNo;
 	
 	

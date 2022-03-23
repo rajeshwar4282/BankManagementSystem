@@ -52,19 +52,21 @@ public class RegistrationData {
 	
 	String accountType;
 	
-	RegistrationData(){}
-	public RegistrationData(@NotBlank(message = "Username cannot be empty..") String username,
-			@NotBlank(message = "Password cannot be empty..") String password,
-			@NotBlank(message = "firestname cannot be empty..") String firstName,
-			@NotBlank(message = "Lastname cannot be empty..") String lastName,@NotBlank(message = "Email cannot be empty..") String email,
-			@NotBlank(message = "Lastname cannot be empty..") String gender, @NotBlank @NotBlank String dob,
-			@NotBlank(message = "Contact no cannot be empty..") String contact,
-			@NotBlank(message = "Lastname cannot be empty..") String pan,
-			@NotBlank(message = "Lastname cannot be empty..") String address,
-			@NotBlank(message = "Lastname cannot be empty..") String city,
-			@NotBlank(message = "Lastname cannot be empty..") String state,
-			@NotBlank(message = "Lastname cannot be empty..") String country, @NotNull int pincode,
-			@NotBlank(message = "Lastname cannot be empty..") String accountType) {
+	public RegistrationData(){}
+	public RegistrationData(String username,
+			String password,
+			 String firstName,
+			 String lastName, String email,
+			String gender, 
+			String dob,
+			 String contact,
+			 String pan,
+			 String address,
+			 String city,
+			 String state,
+			 String country,
+			 int pincode,
+			 String accountType) {
 		super();
 		this.username = username;
 		this.password = password;

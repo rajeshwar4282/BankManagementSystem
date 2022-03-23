@@ -11,7 +11,7 @@ import com.bms.authserver.models.CustomerCredentials;
 import com.bms.authserver.pojo.RegistrationData;
 import com.bms.authserver.pojo.ResponseData;
 @Service
-public class Controllerservice {
+public class ControllerService {
 	
 
 	public ResponseData validationcheck( RegistrationData data) {

@@ -17,10 +17,10 @@ import com.bms.authserver.pojo.RegistrationData;
 import com.bms.authserver.pojo.ResponseData;
 
 
-public class ControllerserviceTest {
+public class ControllerServiceTest {
 
 
-	Controllerservice controllerservice = new Controllerservice();
+	ControllerService controllerservice = new ControllerService();
 	
 	 //testing for suucess
 	@Test

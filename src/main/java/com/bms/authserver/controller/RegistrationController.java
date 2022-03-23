@@ -1,6 +1,7 @@
 package com.bms.authserver.controller;
 
 import java.net.BindException;
+import java.text.ParseException;
 
 import javax.validation.Valid;
 
@@ -15,26 +16,28 @@ import com.bms.authserver.dao.CustomerCredentialsRepository;
 import com.bms.authserver.models.CustomerCredentials;
 import com.bms.authserver.pojo.RegistrationData;
 import com.bms.authserver.pojo.ResponseData;
-import com.bms.authserver.service.Controllerservice;
+import com.bms.authserver.service.ControllerService;
+import com.bms.authserver.service.ControllerServiceJpa;
 
 @RestController
 public class RegistrationController {
 	
+	
+    @Autowired
+    ControllerServiceJpa controllerServiceJpa;
 	@Autowired
-	CustomerCredentialsRepository customerCredentialsRepository;
-
-	private  Controllerservice controllerservice = new Controllerservice();
+    ControllerService controllerservice ;
 	
 	@PostMapping("/register")
-	public <ResponseEntity>ResponseData registerNewUser(@Valid @RequestBody RegistrationData registrationData, BindingResult bindingResult) throws BindException {
+	public <ResponseEntity>ResponseData registerNewUser(@Valid @RequestBody RegistrationData registrationData, BindingResult bindingResult) throws BindException, ParseException {
 		
 		
 		ResponseData response = controllerservice.validationcheck(registrationData);
 		if(response.getStstus()=="success") {
-			CustomerCredentials cc= new CustomerCredentials(registrationData.getUsername(),registrationData.getPassword());
-		   customerCredentialsRepository.save(cc);
+			controllerServiceJpa.customercredentialsinsertion(registrationData);
+			//controllerServiceJpa.customerdetailsinsertion(registrationData);
 		}
 		return response;
 	}
-
 }
+	

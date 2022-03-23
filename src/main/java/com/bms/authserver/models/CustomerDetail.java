@@ -45,7 +45,7 @@ public class CustomerDetail extends Auditable<String> {
 	@Temporal(TemporalType.DATE)
 	private Date dob;
 	
-	@Column(name="contact_no")
+	@Column(name="contact_no",length=10)
 	@NotNull(message = "")
 	private String contactNo;
 	

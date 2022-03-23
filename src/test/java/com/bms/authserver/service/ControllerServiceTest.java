@@ -1,18 +1,7 @@
 package com.bms.authserver.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import java.sql.Date;
-
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import com.bms.authserver.controller.RegistrationController;
-import com.bms.authserver.dao.CustomerCredentialsRepository;
-import com.bms.authserver.dao.CustomerDetailRepository;
-import com.bms.authserver.models.CustomerCredentials;
-import com.bms.authserver.models.CustomerDetail;
 import com.bms.authserver.pojo.RegistrationData;
 import com.bms.authserver.pojo.ResponseData;
 
@@ -22,7 +11,7 @@ public class ControllerServiceTest {
 
 	ControllerService controllerservice = new ControllerService();
 	
-	 //testing for suucess
+	 //testing for suucessful validation
 	@Test
     void check1() {
 		String date="01/06/1999";

@@ -3,6 +3,8 @@ package com.bms.authserver.pojo;
 import java.util.Date;
 
 import javax.validation.constraints.Email;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -23,28 +25,29 @@ public class RegistrationData {
 	@NotBlank
 	String email;
 	
-	@NotBlank(message = "Lastname cannot be empty..")
+	@NotBlank(message = "gender cannot be empty..")
 	String gender;
 	
 	@NotBlank
 	String dob;
 	
 	@NotBlank(message = "Contact no cannot be empty..")
+	@Max(value=10)
 	String contact;
 	
-	@NotBlank(message = "Lastname cannot be empty..")
+	@NotBlank(message = "pan cannot be empty..")
 	String pan;
 	
-	@NotBlank(message = "Lastname cannot be empty..")
+	@NotBlank(message = "address cannot be empty..")
 	String address;
 	
-	@NotBlank(message = "Lastname cannot be empty..")
+	@NotBlank(message = "city cannot be empty..")
 	String city;
 	
-	@NotBlank(message = "Lastname cannot be empty..")
+	@NotBlank(message = "state cannot be empty..")
 	String state;
 	
-	@NotBlank(message = "Lastname cannot be empty..")
+	@NotBlank(message = "country cannot be empty..")
 	String country;
 	
 	@NotNull
@@ -146,12 +149,12 @@ public class RegistrationData {
 	}
 
 
-	public @NotBlank String getDob() {
+	public  String getDob() {
 		return dob;
 	}
 
 
-	public void setDob(@NotBlank String dob) {
+	public void setDob( String dob) {
 		this.dob = dob;
 	}
 

@@ -30,12 +30,16 @@ public class RegistrationController {
 	
 	@PostMapping("/register")
 	public <ResponseEntity>ResponseData registerNewUser(@Valid @RequestBody RegistrationData registrationData, BindingResult bindingResult) throws BindException, ParseException {
-		
+		if(bindingResult.hasErrors()) {
+			System.out.println(registrationData.getContact());
+			return new ResponseData(registrationData.getUsername(),"failure",404,"fields cannot be empty");
+		}
 		
 		ResponseData response = controllerservice.validationcheck(registrationData);
 		if(response.getStstus()=="success") {
 			controllerServiceJpa.customercredentialsinsertion(registrationData);
-			//controllerServiceJpa.customerdetailsinsertion(registrationData);
+		     
+			controllerServiceJpa.customerdetailsinsertion(registrationData);
 		}
 		return response;
 	}

@@ -59,33 +59,33 @@
 //		cusdetail.setId(credentials);
 //
 ////
-//		CustomerAddress cusAddress=new CustomerAddress();
-//		cusAddress.setAddress("qeer");
-//		cusAddress.setCity("erd");
-//		cusAddress.setcId(cusdetail);
-//
-//
-//
-//		AccountDetail accDetail=new AccountDetail();
-//		accDetail.setAccountNumber("12763788199");
-//		accDetail.setcId(cusdetail);
-//
-//
-//		AccountMaster accMaster=new AccountMaster();
-//		accMaster.setAccountType("saving");
-//
-//
-//		PasswordAudit passAudit=new PasswordAudit();
-//		passAudit.setOldPassword("odmjwe");
-//		passAudit.setcId(credentials);
+////		CustomerAddress cusAddress=new CustomerAddress();
+////		cusAddress.setAddress("qeer");
+////		cusAddress.setCity("erd");
+////		cusAddress.setcId(cusdetail);
+////
+////
+////
+////		AccountDetail accDetail=new AccountDetail();
+////		accDetail.setAccountNumber("12763788199");
+////		accDetail.setcId(cusdetail);
+////
+////
+////		AccountMaster accMaster=new AccountMaster();
+////		accMaster.setAccountType("saving");
+////
+////
+////		PasswordAudit passAudit=new PasswordAudit();
+////		passAudit.setOldPassword("odmjwe");
+////		passAudit.setcId(credentials);
 //
 //
 //		repository.save(credentials);
 //		customerDetail.save(cusdetail);
-//		customerAddress.save(cusAddress);
-//		accountDetail.save(accDetail);
-//		accountMaster.save(accMaster);
-//		passwordAudit.save(passAudit);
+////		customerAddress.save(cusAddress);
+////		accountDetail.save(accDetail);
+////		accountMaster.save(accMaster);
+////		passwordAudit.save(passAudit);
 //	}
 //
 //

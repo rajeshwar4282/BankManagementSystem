@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 public class RegistrationData {
 	
@@ -19,17 +20,17 @@ public class RegistrationData {
 	@NotBlank(message = "Lastname cannot be empty..")
 	String lastName;
 	
-	@Email
+	@NotBlank
 	String email;
 	
 	@NotBlank(message = "Lastname cannot be empty..")
 	String gender;
 	
 	@NotBlank
-	Date dob;
+	String dob;
 	
 	@NotBlank(message = "Contact no cannot be empty..")
-	long contact;
+	String contact;
 	
 	@NotBlank(message = "Lastname cannot be empty..")
 	String pan;
@@ -46,23 +47,23 @@ public class RegistrationData {
 	@NotBlank(message = "Lastname cannot be empty..")
 	String country;
 	
-	@NotBlank
+	@NotNull
 	int pincode;
 	
 	String accountType;
 	
-	
+	RegistrationData(){}
 	public RegistrationData(@NotBlank(message = "Username cannot be empty..") String username,
 			@NotBlank(message = "Password cannot be empty..") String password,
 			@NotBlank(message = "firestname cannot be empty..") String firstName,
-			@NotBlank(message = "Lastname cannot be empty..") String lastName, @Email String email,
-			@NotBlank(message = "Lastname cannot be empty..") String gender, @NotBlank Date dob,
-			@NotBlank(message = "Contact no cannot be empty..") long contact,
+			@NotBlank(message = "Lastname cannot be empty..") String lastName,@NotBlank(message = "Email cannot be empty..") String email,
+			@NotBlank(message = "Lastname cannot be empty..") String gender, @NotBlank @NotBlank String dob,
+			@NotBlank(message = "Contact no cannot be empty..") String contact,
 			@NotBlank(message = "Lastname cannot be empty..") String pan,
 			@NotBlank(message = "Lastname cannot be empty..") String address,
 			@NotBlank(message = "Lastname cannot be empty..") String city,
 			@NotBlank(message = "Lastname cannot be empty..") String state,
-			@NotBlank(message = "Lastname cannot be empty..") String country, @NotBlank int pincode,
+			@NotBlank(message = "Lastname cannot be empty..") String country, @NotNull int pincode,
 			@NotBlank(message = "Lastname cannot be empty..") String accountType) {
 		super();
 		this.username = username;
@@ -143,22 +144,22 @@ public class RegistrationData {
 	}
 
 
-	public Date getDob() {
+	public @NotBlank String getDob() {
 		return dob;
 	}
 
 
-	public void setDob(Date dob) {
+	public void setDob(@NotBlank String dob) {
 		this.dob = dob;
 	}
 
 
-	public long getContact() {
+	public String getContact() {
 		return contact;
 	}
 
 
-	public void setContact(long contact) {
+	public void setContact(String contact) {
 		this.contact = contact;
 	}
 

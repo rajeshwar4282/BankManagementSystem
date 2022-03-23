@@ -3,10 +3,16 @@ package com.bms.authserver.service;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.bms.authserver.dao.CustomerCredentialsRepository;
+import com.bms.authserver.models.CustomerCredentials;
 import com.bms.authserver.pojo.RegistrationData;
 import com.bms.authserver.pojo.ResponseData;
-
+@Service
 public class Controllerservice {
+	
 
 	public ResponseData validationcheck( RegistrationData data) {
 		ResponseData response = new ResponseData(data.getUsername(),"success",200,"successfully registered! ");
@@ -50,6 +56,7 @@ public class Controllerservice {
 			response.setMessage(msg);
 			response.setStstus("failure");
 		}
+		
 		return response;
 	}
 	//function for checking username availability
@@ -87,8 +94,8 @@ public class Controllerservice {
       return pat.matcher(email).matches();
 	}
 	//function for validating phone number
-	public static boolean isValidPhoneNumber(long phone) {
-		String s=Long.toString(phone);
+	public static boolean isValidPhoneNumber(String s) {
+		
 		Pattern p = Pattern.compile("^\\d{10}$");
         Matcher m = p.matcher(s);
         return (m.matches());

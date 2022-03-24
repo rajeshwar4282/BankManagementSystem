@@ -48,8 +48,7 @@ public class CustomerAddress extends Auditable<String> {
 	@Size(max=6)
 	private String pinCode;
 	
-	@Column(name="country",length = 2)
-	@Size(max=2)
+	@Column(name="country")
 	private String country;
 	
 	@Column(name="is_active")

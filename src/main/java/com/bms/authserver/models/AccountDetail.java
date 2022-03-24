@@ -36,7 +36,8 @@ public class AccountDetail extends Auditable<String> {
 	@Size(max=13)
 	private String accountNumber;
 
-	@OneToOne()
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="account_type_id")
 	private AccountMaster accountTypeId;
 
 	public AccountDetail(CustomerDetail customerDetail,  String accountNumber, AccountMaster accountTypeId) {

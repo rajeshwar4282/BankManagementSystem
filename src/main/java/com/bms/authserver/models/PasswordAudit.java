@@ -21,7 +21,7 @@ public class PasswordAudit {
 	@GeneratedValue(strategy = GenerationType.AUTO,generator = "native")
 	private Long id;
 	
-	@ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+	@ManyToOne()
 	@JoinColumn(name="c_id")
 	private CustomerCredentials customerCredentials;
 	

@@ -1,6 +1,7 @@
 package com.bms.authserver.models;
 
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,7 +28,7 @@ public class CustomerAddress extends Auditable<String> {
 	@GeneratedValue(strategy = GenerationType.AUTO,generator = "native")
 	private Long addressId;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="customer_id")
 	private CustomerDetail customerDetail;
 

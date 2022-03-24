@@ -28,10 +28,10 @@ public class ControllerService {
 			  valid = false;
 			  msg=msg+"please enter a valid email id! ";
 		  }
-		  if(!isValidPhoneNumber(data.getContact())) {
-			  valid = false;
-			  msg=msg+"please enter a valid phone number! ";
-		  }
+			
+			  if(!isValidPhoneNumber(data.getContact())) { valid = false;
+			  msg=msg+"please enter a valid phone number! "; }
+			 
 		  if(!isValidPanNumber(data.getPan())) {
 			  valid = false;
 			  msg=msg+"please enter a valid pan number! ";

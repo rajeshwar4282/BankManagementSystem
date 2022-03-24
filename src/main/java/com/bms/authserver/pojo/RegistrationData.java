@@ -32,7 +32,6 @@ public class RegistrationData {
 	String dob;
 	
 	@NotBlank(message = "Contact no cannot be empty..")
-	@Max(value=10)
 	String contact;
 	
 	@NotBlank(message = "pan cannot be empty..")

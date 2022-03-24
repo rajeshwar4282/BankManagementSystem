@@ -45,7 +45,7 @@ public class CustomerDetail extends Auditable<String> {
 	@Temporal(TemporalType.DATE)
 	private Date dob;
 	
-	@Column(name="contact_no",length=10)
+	@Column(name="contact_no",columnDefinition = "TEXT",length=10)
 	@NotNull(message = "")
 	private String contactNo;
 	
@@ -55,7 +55,8 @@ public class CustomerDetail extends Auditable<String> {
 	@Size(max=10)
 	private  String pan;
 
-	@OneToOne
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name = "c_id")
 	private CustomerCredentials customerCredentials;
 
 	public Long getCustomerId() {

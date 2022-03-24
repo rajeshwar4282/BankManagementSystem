@@ -37,7 +37,7 @@ public class RegistrationController {
 		
 		ResponseData response = controllerservice.validationcheck(registrationData);
 		if(response.getStstus()=="success") {
-			controllerServiceJpa.customercredentialsinsertion(registrationData);
+		//	controllerServiceJpa.customercredentialsinsertion(registrationData);
 		     
 			controllerServiceJpa.customerdetailsinsertion(registrationData);
 		}

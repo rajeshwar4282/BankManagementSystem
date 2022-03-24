@@ -32,6 +32,8 @@ public class ControllerServiceJpa {
 		Date date1 = null;
 		date1 = (Date) new SimpleDateFormat("dd/MM/yyyy").parse(obj.getDob());  
 		CustomerDetail cd= new CustomerDetail(cc,obj.getFirstName(),obj.getLastName(),obj.getEmail(),obj.getGender(),date1,obj.getContact(),obj.getPan());
+		
+
 		customerDetailRepository.save(cd);
 	}
 }

@@ -15,6 +15,7 @@ public class ControllerService {
 	
 
 	public ResponseData validationcheck( RegistrationData data) {
+		
 		ResponseData response = new ResponseData(data.getUsername(),"success",200,"successfully registered! ");
 		String msg ="";
 		boolean valid = true;
@@ -29,8 +30,9 @@ public class ControllerService {
 			  msg=msg+"please enter a valid email id! ";
 		  }
 			
-			  if(!isValidPhoneNumber(data.getContact())) { valid = false;
-			  msg=msg+"please enter a valid phone number! "; }
+		  if(!isValidPhoneNumber(data.getContact())) { valid = false;
+			  msg=msg+"please enter a valid phone number! ";
+		  }
 			 
 		  if(!isValidPanNumber(data.getPan())) {
 			  valid = false;
@@ -41,7 +43,6 @@ public class ControllerService {
 			  msg=msg+"please enter a valid pincode! ";
 		  }
 		  
-			
 			
 		}
 		else {

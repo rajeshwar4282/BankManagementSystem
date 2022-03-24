@@ -3,6 +3,9 @@ package com.bms.authserver.service;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.text.ParseException;
+
 import com.bms.authserver.dao.CustomerCredentialsRepository;
 import com.bms.authserver.models.CustomerCredentials;
 import com.bms.authserver.pojo.RegistrationData;
@@ -13,7 +16,7 @@ public class ControllerServiceJpaTest {
     ControllerServiceJpa controllerServiceJpa;
 	
 	@Test
-	public void insertiontest1(){
+	public void insertiontest1() throws ParseException{
 		RegistrationData obj = new RegistrationData();
 		obj.setAccountType("savings");
 		obj.setAddress("main road,duddenapally");
@@ -30,7 +33,7 @@ public class ControllerServiceJpaTest {
         obj.setPincode(505472);
         obj.setState("telangana");
         obj.setUsername("rohith4282");
-		controllerServiceJpa.customercredentialsinsertion(obj);
+		controllerServiceJpa.registrationdatainsertion(obj);
 		
 	}
 }

@@ -19,6 +19,7 @@ import com.bms.authserver.models.CustomerAddress;
 import com.bms.authserver.models.CustomerCredentials;
 import com.bms.authserver.models.CustomerDetail;
 import com.bms.authserver.pojo.RegistrationData;
+import com.bms.authserver.util.CommonUtils;
 
 @Service
 public class ControllerServiceJpa {
@@ -30,9 +31,10 @@ public class ControllerServiceJpa {
 	@Autowired
 	AccountDetailRepository accountDetailRepository;
 	
+	
 	public void registrationdatainsertion(RegistrationData obj) throws ParseException {
 		
-		CustomerCredentials cc= new CustomerCredentials(obj.getUsername(),obj.getPassword()); 
+		CustomerCredentials cc= new CustomerCredentials(obj.getUsername(),CommonUtils.bcryptPasswordEncoder(obj.getPassword())); 
 		CustomerDetail cd= new CustomerDetail(cc,obj.getFirstName(),obj.getLastName(),obj.getEmail(),obj.getGender(),(Date) new SimpleDateFormat("dd/MM/yyyy").parse(obj.getDob()),obj.getContact(),obj.getPan());
 		CustomerAddress ca = new CustomerAddress(cd,obj.getAddress(),obj.getCity(),obj.getState(),String.valueOf(obj.getPincode()),obj.getCountry(),"active");
         AccountMaster am = new AccountMaster(obj.getAccountType());

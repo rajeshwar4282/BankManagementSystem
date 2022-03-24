@@ -62,7 +62,7 @@ public class ControllerService {
 	}
 	//function for checking username availability
 	public static boolean usernameavailability(String username ) {
-		if(username.contains(username)) {
+		if(username.contains("admin")) {
 			return false;
 		}
 		return true;

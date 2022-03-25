@@ -21,6 +21,10 @@ public class ControllerService {
 		boolean valid = true;
 		if(usernameavailability(data.getUsername())) {
 			
+		  if(isValidPhoneNumber(data.getUsername())||isValidEmailId(data.getUsername())) {
+				  valid = false;
+				  msg=msg+"please enter a valid username (cannot be phone number / email id ) ";
+			  }
 		  if(!isValidPassword(data.getPassword())) {
 			  valid = false;
 			  msg=msg+"password doesnt meet criteria! ";
@@ -53,7 +57,7 @@ public class ControllerService {
 		
 		
 		if(valid==false) {
-			response.setCode(400);
+			response.setCode(300);
 			response.setMessage(msg);
 			response.setStstus("failure");
 		}
@@ -67,6 +71,7 @@ public class ControllerService {
 		}
 		return true;
 	}
+	
 	//function for checking password criteria
 	public static boolean isValidPassword(String password)
     {

@@ -32,7 +32,6 @@ public class RegistrationController {
 	public <ResponseEntity>ResponseData registerNewUser(@Valid @RequestBody RegistrationData registrationData, BindingResult bindingResult) throws BindException, ParseException {
 		
 		if(bindingResult.hasErrors()) {
-			System.out.println(registrationData.getContact());
 			return new ResponseData(registrationData.getUsername(),"failure",404,"fields cannot be empty");
 		}
 		

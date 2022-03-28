@@ -4,16 +4,24 @@ public class ResponseData {
 	
 	String username;
 	
-	String ststus;
+	String status;
 	
 	int code;
 	
 	String message;
 
-	public ResponseData(String username, String ststus, int code, String message) {
+	
+	public ResponseData(String status, int code, String message) {
+		super();
+		this.status = status;
+		this.code = code;
+		this.message =message;
+	}
+
+	public ResponseData(String username, String status, int code, String message) {
 		super();
 		this.username = username;
-		this.ststus = ststus;
+		this.status = status;
 		this.code = code;
 		this.message = message;
 	}
@@ -26,12 +34,12 @@ public class ResponseData {
 		this.username = username;
 	}
 
-	public String getStstus() {
-		return ststus;
+	public String getStatus() {
+		return status;
 	}
 
-	public void setStstus(String ststus) {
-		this.ststus = ststus;
+	public void setStstus(String status) {
+		this.status = status;
 	}
 
 	public int getCode() {

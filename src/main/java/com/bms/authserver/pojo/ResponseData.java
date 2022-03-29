@@ -26,6 +26,10 @@ public class ResponseData {
 		this.message = message;
 	}
 
+	public ResponseData() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public String getUsername() {
 		return username;
 	}

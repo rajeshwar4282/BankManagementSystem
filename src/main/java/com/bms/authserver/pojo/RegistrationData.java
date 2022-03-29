@@ -3,7 +3,10 @@ package com.bms.authserver.pojo;
 import java.util.Date;
 
 import javax.validation.constraints.Email;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 public class RegistrationData {
 	
@@ -19,51 +22,53 @@ public class RegistrationData {
 	@NotBlank(message = "Lastname cannot be empty..")
 	String lastName;
 	
-	@Email
+	@NotBlank
 	String email;
 	
-	@NotBlank(message = "Lastname cannot be empty..")
+	@NotBlank(message = "gender cannot be empty..")
 	String gender;
 	
 	@NotBlank
-	Date dob;
+	String dob;
 	
 	@NotBlank(message = "Contact no cannot be empty..")
-	long contact;
+	String contact;
 	
-	@NotBlank(message = "Lastname cannot be empty..")
+	@NotBlank(message = "pan cannot be empty..")
 	String pan;
 	
-	@NotBlank(message = "Lastname cannot be empty..")
+	@NotBlank(message = "address cannot be empty..")
 	String address;
 	
-	@NotBlank(message = "Lastname cannot be empty..")
+	@NotBlank(message = "city cannot be empty..")
 	String city;
 	
-	@NotBlank(message = "Lastname cannot be empty..")
+	@NotBlank(message = "state cannot be empty..")
 	String state;
 	
-	@NotBlank(message = "Lastname cannot be empty..")
+	@NotBlank(message = "country cannot be empty..")
 	String country;
 	
-	@NotBlank
+	@NotNull
 	int pincode;
 	
 	String accountType;
 	
-	
-	public RegistrationData(@NotBlank(message = "Username cannot be empty..") String username,
-			@NotBlank(message = "Password cannot be empty..") String password,
-			@NotBlank(message = "firestname cannot be empty..") String firstName,
-			@NotBlank(message = "Lastname cannot be empty..") String lastName, @Email String email,
-			@NotBlank(message = "Lastname cannot be empty..") String gender, @NotBlank Date dob,
-			@NotBlank(message = "Contact no cannot be empty..") long contact,
-			@NotBlank(message = "Lastname cannot be empty..") String pan,
-			@NotBlank(message = "Lastname cannot be empty..") String address,
-			@NotBlank(message = "Lastname cannot be empty..") String city,
-			@NotBlank(message = "Lastname cannot be empty..") String state,
-			@NotBlank(message = "Lastname cannot be empty..") String country, @NotBlank int pincode,
-			@NotBlank(message = "Lastname cannot be empty..") String accountType) {
+	public RegistrationData(){}
+	public RegistrationData(String username,
+			String password,
+			 String firstName,
+			 String lastName, String email,
+			String gender, 
+			String dob,
+			 String contact,
+			 String pan,
+			 String address,
+			 String city,
+			 String state,
+			 String country,
+			 int pincode,
+			 String accountType) {
 		super();
 		this.username = username;
 		this.password = password;
@@ -143,22 +148,22 @@ public class RegistrationData {
 	}
 
 
-	public Date getDob() {
+	public  String getDob() {
 		return dob;
 	}
 
 
-	public void setDob(Date dob) {
+	public void setDob( String dob) {
 		this.dob = dob;
 	}
 
 
-	public long getContact() {
+	public String getContact() {
 		return contact;
 	}
 
 
-	public void setContact(long contact) {
+	public void setContact(String contact) {
 		this.contact = contact;
 	}
 

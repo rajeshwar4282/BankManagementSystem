@@ -52,9 +52,8 @@ public class AccountMaster {
 	public AccountMaster() {}
 
 
-	public AccountMaster(Long accountTypeId, String accountType) {
+	public AccountMaster( String accountType) {
 		super();
-		this.accountTypeId = accountTypeId;
 		this.accountType = accountType;
 	}
 	

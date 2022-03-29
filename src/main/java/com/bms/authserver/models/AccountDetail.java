@@ -1,6 +1,7 @@
 package com.bms.authserver.models;
 
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,7 +13,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
-import org.hibernate.annotations.ForeignKey;
+
 import org.hibernate.annotations.GenericGenerator;
 
 
@@ -27,7 +28,7 @@ public class AccountDetail extends Auditable<String> {
     @GenericGenerator(strategy = "native",name = "native")
 	private Long accountId;
 
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL )
 	@JoinColumn(name="customer_id")
 	private CustomerDetail customerDetail;
 	
@@ -35,7 +36,8 @@ public class AccountDetail extends Auditable<String> {
 	@Size(max=13)
 	private String accountNumber;
 
-	@OneToOne
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="account_type_id")
 	private AccountMaster accountTypeId;
 
 	public AccountDetail(CustomerDetail customerDetail,  String accountNumber, AccountMaster accountTypeId) {

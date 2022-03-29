@@ -27,6 +27,7 @@ public class CommonUtils {
 		//boolean ismatch = pbkdf2PasswordEncoder.matches(password, encodedPassword);
 		
 		return encodedPassword;
+<<<<<<< HEAD
 	}
 	
 	
@@ -34,3 +35,7 @@ public class CommonUtils {
 
 
 }
+=======
+	  }
+	}
+>>>>>>> 0d41ccaf27a031d380b29617332062c4e86d1c30

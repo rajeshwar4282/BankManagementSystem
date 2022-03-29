@@ -4,6 +4,7 @@ import java.security.MessageDigest;
 import java.util.List;
 import java.util.Objects;
 
+import javax.annotation.PostConstruct;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,26 +27,34 @@ import com.bms.authserver.util.CommonUtils;
 
 
 
-@CrossOrigin(origins = "https://bankmanagement")
+@CrossOrigin(origins = "https://localhost:9090")
 @RestController
 public class LoginController {
 	
 	@Autowired
 	CustomerCredentialsRepository customerCredentialsrepository;
 	
+	@PostConstruct
+	public void postConstruct() {
+		CustomerCredentials cutomerCredential  = new CustomerCredentials();
+		cutomerCredential.setUsername("rahul2022");
+		cutomerCredential.setPassword("Pass@390");	
+		customerCredentialsrepository.save(cutomerCredential);
+		}
 	
 	@PostMapping ("/login")
+	
 	public <ResponseEntity>ResponseData login(@RequestBody LoginRequest loginRequest) { 
 	CustomerCredentials customercredentials =customerCredentialsrepository.findByUsername(loginRequest.getUsername());
 	
 	if(Objects.nonNull(customercredentials)) {
-		String inputpassword=CommonUtils.bcryptPasswordEncoder(loginRequest.getPassword());
-		if(inputpassword.equals(customercredentials.getPassword())) {
+		//String inputpassword=CommonUtils.bcryptPasswordEncoder(loginRequest.getPassword());
+		if(loginRequest.getPassword().equals(customercredentials.getPassword())) {
 			System.out.println("Login Successful");
 			
 		customercredentials.setLoggedInKey(String.valueOf(Math.random()));
 		customerCredentialsrepository.save(customercredentials);
-			ResponseData response =  new ResponseData("success", 200, "Login successful");
+			ResponseData response =  new ResponseData(loginRequest.getUsername(),"success", 200, "Login successful");
 			return response;
 		}
 	
@@ -78,7 +87,7 @@ if(Objects.nonNull(customerCredential.getLoggedInKey()))
 }
 	//return ResponseEntity.ok().build();	
 	
-	ResponseData response =  new ResponseData("success", 200, "Logout successful");
+	ResponseData response =  new ResponseData(username,"success", 200, "Logout successful");
 	return response;
 
 }

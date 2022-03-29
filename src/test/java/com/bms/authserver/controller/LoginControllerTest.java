@@ -6,11 +6,15 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import com.bms.authserver.models.CustomerCredentials;
+
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 
+@SpringBootTest
 public class LoginControllerTest extends AbstractTest {
 
 	@Test
+	
 	public void createCustomerLogin() throws Exception {
 	String uri = "/login";
 	CustomerCredentials customercredentials = new CustomerCredentials();
@@ -33,6 +37,7 @@ public class LoginControllerTest extends AbstractTest {
 	customercredentials.setUsername("jack2022");
 	customercredentials.setPassword("Pass@390");
 	String inputJson = super.mapToJson(customercredentials);
+	System.out.println("MVC obj "+mvc);
 	MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.post(uri)
 	.contentType(MediaType.APPLICATION_JSON_VALUE).content(inputJson)).andReturn();
 	int status = mvcResult.getResponse().getStatus();

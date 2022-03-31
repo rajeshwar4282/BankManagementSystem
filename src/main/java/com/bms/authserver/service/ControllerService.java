@@ -38,7 +38,7 @@ public class ControllerService {
 			  msg=msg+"please enter a valid phone number! ";
 		  }
 			 
-		  if(!isValidPanNumber(data.getPan())) {
+		  if(!isValidPanNumber(data.getPan().toUpperCase())) {
 			  valid = false;
 			  msg=msg+"please enter a valid pan number! ";
 		  }

@@ -4,7 +4,7 @@ public class ResponseData {
 	
 	String username;
 	
-	String ststus;
+	String status;
 	
 	int code;
 	
@@ -13,7 +13,7 @@ public class ResponseData {
 	public ResponseData(String username, String ststus, int code, String message) {
 		super();
 		this.username = username;
-		this.ststus = ststus;
+		this.status = ststus;
 		this.code = code;
 		this.message = message;
 	}
@@ -31,11 +31,11 @@ public class ResponseData {
 	}
 
 	public String getStstus() {
-		return ststus;
+		return status;
 	}
 
 	public void setStstus(String ststus) {
-		this.ststus = ststus;
+		this.status = ststus;
 	}
 
 	public int getCode() {

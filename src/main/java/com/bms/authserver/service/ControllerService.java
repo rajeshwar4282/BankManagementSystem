@@ -49,14 +49,14 @@ public class ControllerService {
 		else {
 			response.setCode(400); 
 			response.setMessage("username is not available");
-			response.setStstus("failure");
+			response.setStatus("failure");
 		}
 		
 		
 		if(!valid) {
 			response.setCode(300);
 			response.setMessage(msg);
-			response.setStstus("failure");
+			response.setStatus("failure");
 		}
 		
 		return response;

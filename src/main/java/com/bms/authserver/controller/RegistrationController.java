@@ -40,7 +40,7 @@ public class RegistrationController {
 		}
 		
 		ResponseData response = controllerservice.validationcheck(registrationData);
-		if(response.getStstus().contains("success")) {
+		if(response.getStatus().contains("success")) {
 			controllerServiceJpa.registrationdatainsertion(registrationData);
 		}
 		return response;

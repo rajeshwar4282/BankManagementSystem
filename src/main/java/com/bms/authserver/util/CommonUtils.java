@@ -5,12 +5,12 @@ import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
 
 public class CommonUtils {
 
+	private CommonUtils() {
+		
+	}
 	public static  String bcryptPasswordEncoder(String password) {
-		String  originalPassword = "password";
-		String passwordHash = BCrypt.hashpw(originalPassword, BCrypt.gensalt(12));
-
-		//boolean matched = BCrypt.checkpw(originalPassword, generatedSecuredPasswordHash);
-		return passwordHash;
+	
+		return BCrypt.hashpw(password, BCrypt.gensalt(12));
 	}
 	
 	
@@ -22,10 +22,7 @@ public class CommonUtils {
 
 		Pbkdf2PasswordEncoder pbkdf2PasswordEncoder =new Pbkdf2PasswordEncoder(pepper, iterations, hashWidth);
 		pbkdf2PasswordEncoder.setEncodeHashAsBase64(true);
-		String encodedPassword = pbkdf2PasswordEncoder.encode(password);
 		
-		//boolean ismatch = pbkdf2PasswordEncoder.matches(password, encodedPassword);
-		
-		return encodedPassword;
+		return pbkdf2PasswordEncoder.encode(password);
 	  }
 	}

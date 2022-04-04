@@ -3,11 +3,8 @@ package com.bms.authserver.service;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.bms.authserver.dao.CustomerCredentialsRepository;
-import com.bms.authserver.models.CustomerCredentials;
 import com.bms.authserver.pojo.RegistrationData;
 import com.bms.authserver.pojo.ResponseData;
 @Service
@@ -21,13 +18,13 @@ public class ControllerService {
 		boolean valid = true;
 		if(usernameavailability(data.getUsername())) {
 			
-		  if(isValidPhoneNumber(data.getUsername())||isValidEmailId(data.getUsername())) {
+		  if(!isValidUsername(data.getUsername())) {
 				  valid = false;
-				  msg=msg+"please enter a valid username (cannot be phone number / email id ) ";
-			  }
+				  msg=msg+"please enter a valid username (cannot be phone number / email id /cannot contain special characters ) ";
+		  }
 		  if(!isValidPassword(data.getPassword())) {
 			  valid = false;
-			  msg=msg+"password doesnt meet criteria! ";
+			  msg=msg+"password doesn't meet criteria! ";
 		  }
 		  if(!isValidEmailId(data.getEmail())) {
 			  valid = false;
@@ -56,7 +53,7 @@ public class ControllerService {
 		}
 		
 		
-		if(valid==false) {
+		if(!valid) {
 			response.setCode(300);
 			response.setMessage(msg);
 			response.setStstus("failure");
@@ -66,12 +63,14 @@ public class ControllerService {
 	}
 	//function for checking username availability
 	public static boolean usernameavailability(String username ) {
-		if(username.contains("admin")) {
-			return false;
-		}
-		return true;
+		return !username.contains("admin");
 	}
-	
+	public static boolean isValidUsername(String username) {
+		String regex = "^[A-Za-z]\\w{5,29}$";
+        Pattern p = Pattern.compile(regex);
+        Matcher m = p.matcher(username);
+        return m.matches();
+	}
 	//function for checking password criteria
 	public static boolean isValidPassword(String password)
     {
@@ -90,16 +89,8 @@ public class ControllerService {
     }
 	//function for validating email id
 	public static boolean isValidEmailId(String email ) {
-		String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+
-                "[a-zA-Z0-9_+&*-]+)*@" +
-                "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
-                "A-Z]{2,7}$";
-                  
-        Pattern pat = Pattern.compile(emailRegex);
-        if (email == null)
-          return false;
-      
-      return pat.matcher(email).matches();
+		String regex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
+	      return email.matches(regex);
 	}
 	//function for validating phone number
 	public static boolean isValidPhoneNumber(String s) {

@@ -4,11 +4,9 @@ package com.bms.authserver.models;
 import java.util.Date;
 
 import javax.persistence.*;
-import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.springframework.data.annotation.LastModifiedBy;
-import org.springframework.data.annotation.LastModifiedDate;
+
 
 
 @Entity

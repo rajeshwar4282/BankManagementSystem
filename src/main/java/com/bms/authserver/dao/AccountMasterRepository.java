@@ -6,4 +6,6 @@ import com.bms.authserver.models.AccountMaster;
 
 public interface AccountMasterRepository extends JpaRepository<AccountMaster, Long>{
 
+	AccountMaster findByAccountType(String accountType);
+
 }

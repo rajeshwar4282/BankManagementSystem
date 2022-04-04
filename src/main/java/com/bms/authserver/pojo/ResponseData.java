@@ -19,7 +19,7 @@ public class ResponseData {
 	}
 
 	public ResponseData() {
-		// TODO Auto-generated constructor stub
+
 	}
 
 	public String getUsername() {

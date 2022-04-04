@@ -6,7 +6,7 @@ import com.bms.authserver.pojo.RegistrationData;
 import com.bms.authserver.pojo.ResponseData;
 
 
-public class ControllerServiceTest {
+ class ControllerServiceTest {
 
 
 	ControllerService controllerservice = new ControllerService();

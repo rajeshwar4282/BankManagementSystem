@@ -1,19 +1,17 @@
 package com.bms.authserver.controller;
 
-import java.net.BindException;
 import java.text.ParseException;
+import java.util.List;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.bms.authserver.dao.CustomerCredentialsRepository;
-import com.bms.authserver.models.CustomerCredentials;
 import com.bms.authserver.pojo.RegistrationData;
 import com.bms.authserver.pojo.ResponseData;
 import com.bms.authserver.service.ControllerService;
@@ -28,15 +26,21 @@ public class RegistrationController {
 	@Autowired
     ControllerService controllerservice ;
 	
+	
 	@PostMapping("/register")
-	public <ResponseEntity>ResponseData registerNewUser(@Valid @RequestBody RegistrationData registrationData, BindingResult bindingResult) throws BindException, ParseException {
+	public ResponseData registerNewUser(@Valid @RequestBody RegistrationData registrationData, BindingResult bindingResult) throws  ParseException {
 		
 		if(bindingResult.hasErrors()) {
-			return new ResponseData(registrationData.getUsername(),"failure",404,"fields cannot be empty");
+		List<FieldError> list = bindingResult.getFieldErrors();
+		String str = "";
+		for(FieldError i:list) {
+			str= str+i.getField()+",";
+		}
+			return new ResponseData(registrationData.getUsername(),"failure",404,str+"cannot be empty");
 		}
 		
 		ResponseData response = controllerservice.validationcheck(registrationData);
-		if(response.getStstus()=="success") {
+		if(response.getStstus().contains("success")) {
 			controllerServiceJpa.registrationdatainsertion(registrationData);
 		}
 		return response;

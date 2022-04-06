@@ -39,7 +39,7 @@ public class ControllerServiceJpa {
 		
 		CustomerCredentials cc= new CustomerCredentials(obj.getUsername(),CommonUtils.bcryptPasswordEncoder(obj.getPassword())); 
 		CustomerDetail cd= new CustomerDetail(cc,obj.getFirstName(),obj.getLastName(),obj.getEmail(),obj.getGender(), new SimpleDateFormat("dd/MM/yyyy").parse(obj.getDob()),obj.getContact(),obj.getPan());
-		CustomerAddress ca = new CustomerAddress(cd,obj.getAddress(),obj.getCity(),obj.getState(),String.valueOf(obj.getPincode()),obj.getCountry(),"active");
+		CustomerAddress ca = new CustomerAddress(cd,obj.getAddress(),obj.getCity(),obj.getState(),obj.getPincode(),obj.getCountry(),"Y");
         AccountMaster am1 = accountMasterRepository.findByAccountType(obj.getAccountType());
         int rand = new Random().nextInt((999999999 - 100) + 1) + 10;
         if(am1==null) {

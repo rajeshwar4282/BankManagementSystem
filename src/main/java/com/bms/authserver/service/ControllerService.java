@@ -26,6 +26,14 @@ public class ControllerService {
 			  valid = false;
 			  msg=msg+"password doesn't meet criteria!";
 		  }
+		  if(!isValidNames(data.getFirstName())) {
+			  valid = false;
+			  msg=msg+"please enter a valid firstname!";
+		  }
+		  if(!isValidNames(data.getLastName())) {
+			  valid = false;
+			  msg=msg+"please enter a valid lastname!";
+		  }
 		  if(!isValidEmailId(data.getEmail())) {
 			  valid = false;
 			  msg=msg+"please enter a valid email id!";
@@ -34,17 +42,22 @@ public class ControllerService {
 			  valid = false;
 			  msg=msg+"please enter a valid dob!";
 		  }
-		  if(!isValidPhoneNumber(data.getContact())) { valid = false;
+		  if(!isValidPhoneNumber(data.getContact())) { 
+			  valid = false;
 			  msg=msg+"please enter a valid phone number!";
 		  }
 			 
-		  if(!isValidPanNumber(data.getPan().toUpperCase())) {
+		  if(!isValidPanNumber(data.getPan())) {
 			  valid = false;
 			  msg=msg+"please enter a valid pan number!";
 		  }
 		  if(!isValidPinCode(data.getPincode())) {
 			  valid = false;
 			  msg=msg+"please enter a valid pincode!";
+		  }
+		  if(!isValidAccountType(data.getAccountType().toLowerCase())) {
+			  valid=false;
+			  msg=msg+"please enter a valid accounttype (savings/current/loanaccount)";
 		  }
 		  
 			
@@ -90,6 +103,10 @@ public class ControllerService {
         Matcher m = p.matcher(password);
         return m.matches();
     }
+	//function for checking firstname,lastname
+	public static boolean isValidNames(String name) {
+		return name.matches( "[a-z][a-z]*" );
+	}
 	//function for validating email id
 	public static boolean isValidEmailId(String email ) {
 		String regex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
@@ -120,12 +137,20 @@ public class ControllerService {
         return m.matches();
 	}
 	//function to check pincode validation
-	public static boolean isValidPinCode(int pincode1)
+	public static boolean isValidPinCode(String pincode1)
 	{
-	    String pincode = Integer.toString(pincode1);
 	    Pattern p = Pattern.compile("^[1-9]{1}[0-9]{2}\\s{0,1}[0-9]{3}$");
-	    Matcher m = p.matcher(pincode);
+	    Matcher m = p.matcher(pincode1);
         return m.matches();
 	    
+	}
+	public static boolean isValidAccountType(String accountType) {
+		
+		
+		if(accountType.equals("savings") || accountType.contains("current") || accountType.contains("loanaccount"))
+			return true;
+		
+		
+		return false;
 	}
 }

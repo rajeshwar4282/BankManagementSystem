@@ -44,9 +44,9 @@ public class RegistrationData {
 	@NotBlank(message = "country cannot be empty..")
 	String country;
 	
-	@NotNull
-	int pincode;
-	
+	@NotBlank(message="pincode cannot be empty..")
+	String pincode;
+	@NotBlank(message = "accountType cannot be empty..")
 	String accountType;
 	
 	public RegistrationData(){}
@@ -62,7 +62,7 @@ public class RegistrationData {
 			 String city,
 			 String state,
 			 String country,
-			 int pincode,
+			 String pincode,
 			 String accountType) {
 		super();
 		this.username = username;
@@ -213,12 +213,12 @@ public class RegistrationData {
 	}
 
 
-	public int getPincode() {
+	public String getPincode() {
 		return pincode;
 	}
 
 
-	public void setPincode(int pincode) {
+	public void setPincode(String pincode) {
 		this.pincode = pincode;
 	}
 

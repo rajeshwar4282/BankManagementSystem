@@ -13,35 +13,38 @@ public class ControllerService {
 
 	public ResponseData validationcheck( RegistrationData data) {
 		
-		ResponseData response = new ResponseData(data.getUsername(),"success",200,"successfully registered! ");
+		ResponseData response = new ResponseData(data.getUsername(),"success",200,"successfully registered!");
 		String msg ="";
 		boolean valid = true;
 		if(usernameavailability(data.getUsername())) {
 			
 		  if(!isValidUsername(data.getUsername())) {
 				  valid = false;
-				  msg=msg+"please enter a valid username (cannot be phone number / email id /cannot contain special characters ) ";
+				  msg=msg+"please enter a valid username (cannot be phone number / email id /cannot contain special characters )";
 		  }
 		  if(!isValidPassword(data.getPassword())) {
 			  valid = false;
-			  msg=msg+"password doesn't meet criteria! ";
+			  msg=msg+"password doesn't meet criteria!";
 		  }
 		  if(!isValidEmailId(data.getEmail())) {
 			  valid = false;
-			  msg=msg+"please enter a valid email id! ";
+			  msg=msg+"please enter a valid email id!";
 		  }
-			
+		  if(!isValidDate(data.getDob())) {
+			  valid = false;
+			  msg=msg+"please enter a valid dob!";
+		  }
 		  if(!isValidPhoneNumber(data.getContact())) { valid = false;
-			  msg=msg+"please enter a valid phone number! ";
+			  msg=msg+"please enter a valid phone number!";
 		  }
 			 
 		  if(!isValidPanNumber(data.getPan().toUpperCase())) {
 			  valid = false;
-			  msg=msg+"please enter a valid pan number! ";
+			  msg=msg+"please enter a valid pan number!";
 		  }
 		  if(!isValidPinCode(data.getPincode())) {
 			  valid = false;
-			  msg=msg+"please enter a valid pincode! ";
+			  msg=msg+"please enter a valid pincode!";
 		  }
 		  
 			
@@ -92,6 +95,15 @@ public class ControllerService {
 		String regex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
 	      return email.matches(regex);
 	}
+	//function for validating dob
+	public static boolean isValidDate(String d)
+    {
+        String regex = "^(1[0-2]|0[1-9])/(3[01]"
+                       + "|[12][0-9]|0[1-9])/[0-9]{4}$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher((CharSequence)d);
+        return matcher.matches();
+    }
 	//function for validating phone number
 	public static boolean isValidPhoneNumber(String s) {
 		

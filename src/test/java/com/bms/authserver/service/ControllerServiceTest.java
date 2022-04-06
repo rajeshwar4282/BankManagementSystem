@@ -16,7 +16,7 @@ import com.bms.authserver.pojo.ResponseData;
     void check1() {
 		String date="01/06/1999";
 		RegistrationData data = new RegistrationData("rohith4282","Rohith@4282","rajeshwar","shivanathri","rohithshivanathri@gmail.com","male",date,"9177144155","JBVPS5610D","3-42 minaroad duudenapally","karimnagar","telangana","india",505472,"savings");
-		ResponseData response = new ResponseData("rohith4282","success",200,"successfully registered! ");	
+		ResponseData response = new ResponseData("rohith4282","success",200,"successfully registered!");	
 		assertEquals(response.getMessage(),controllerservice.validationcheck(data).getMessage());
 	}
 	//testing for password validation
@@ -24,7 +24,7 @@ import com.bms.authserver.pojo.ResponseData;
     void check2() {
 		String date="01/06/1999";
 		RegistrationData data = new RegistrationData("rohith4282","rohith4282","rajeshwar","shivanathri","rohithshivanathri@gmail.com","male",date,"9177144155","JBVPS5610D","3-42 minaroad duudenapally","karimnagar","telangana","india",505472,"savings");
-		ResponseData response = new ResponseData("rohith4282","failure",400,"password doesnt meet criteria! ");
+		ResponseData response = new ResponseData("rohith4282","failure",400,"password doesn't meet criteria!");
 		assertEquals(response.getMessage(),controllerservice.validationcheck(data).getMessage());
 	}
 	//testing for email id validation
@@ -32,7 +32,7 @@ import com.bms.authserver.pojo.ResponseData;
     void check3() {
 		String date="01/06/1999";
 		RegistrationData data = new RegistrationData("rohith4282","Rohith@4282","rajeshwar","shivanathri","rohithshivanathgmail.com","male",date,"9177144155","JBVPS5610D","3-42 minaroad duudenapally","karimnagar","telangana","india",505472,"savings");
-		ResponseData response = new ResponseData("rohith4282","failure",400,"please enter a valid email id! ");
+		ResponseData response = new ResponseData("rohith4282","failure",400,"please enter a valid email id!");
 		assertEquals(response.getMessage(),controllerservice.validationcheck(data).getMessage());
 	}
 	//test case for phone number validation
@@ -40,7 +40,7 @@ import com.bms.authserver.pojo.ResponseData;
     void check4() {
 		String date="01/06/1999";
 		RegistrationData data = new RegistrationData("rohith4282","Rohith@4282","rajeshwar","shivanathri","rohithshivanath@gmail.com","male",date,"91771155","JBVPS5610D","3-42 minaroad duudenapally","karimnagar","telangana","india",505472,"savings");
-		ResponseData response = new ResponseData("rohith4282","failure",400,"please enter a valid phone number! ");
+		ResponseData response = new ResponseData("rohith4282","failure",400,"please enter a valid phone number!");
 		assertEquals(response.getMessage(),controllerservice.validationcheck(data).getMessage());
 	}
 	//test case for pan validation
@@ -48,7 +48,7 @@ import com.bms.authserver.pojo.ResponseData;
     void check5() {
 		String date="01/06/1999";
 		RegistrationData data = new RegistrationData("rohith4282","Rohith@4282","rajeshwar","shivanathri","rohithshivanath@gmail.com","male",date,"9177144155","JBVPS56D","3-42 minaroad duudenapally","karimnagar","telangana","india",505472,"savings");
-		ResponseData response = new ResponseData("rohith4282","failure",400,"please enter a valid pan number! ");
+		ResponseData response = new ResponseData("rohith4282","failure",400,"please enter a valid pan number!");
 		assertEquals(response.getMessage(),controllerservice.validationcheck(data).getMessage());
 	}
 	// test case fro pin code validatioln
@@ -56,7 +56,7 @@ import com.bms.authserver.pojo.ResponseData;
     void check6() {
 		String date="01/06/1999";
 		RegistrationData data = new RegistrationData("rohith4282","Rohith@4282","rajeshwar","shivanathri","rohithshivanath@gmail.com","male",date,"9177144155","JBVPS5610D","3-42 minaroad duudenapally","karimnagar","telangana","india",50542,"savings");
-		ResponseData response = new ResponseData("rohith4282","failure",400,"please enter a valid pincode! ");
+		ResponseData response = new ResponseData("rohith4282","failure",400,"please enter a valid pincode!");
 		assertEquals(response.getMessage(),controllerservice.validationcheck(data).getMessage());
 	}
 	//test case for username validation
@@ -72,7 +72,14 @@ import com.bms.authserver.pojo.ResponseData;
     void check8() {
 		String date="01/06/1999";
 		RegistrationData data = new RegistrationData("rohith4282","rohith4282","rajeshwar","shivanathri","rohithshivanathrigmail.com","male",date,"9144155","JBVPS50D","3-42 minaroad duudenapally","karimnagar","telangana","india",505472,"savings");
-		ResponseData response = new ResponseData("rohith4282","failure",400,"password doesnt meet criteria! please enter a valid email id! please enter a valid phone number! please enter a valid pan number! ");
+		ResponseData response = new ResponseData("rohith4282","failure",400,"password doesn't meet criteria!please enter a valid email id!please enter a valid phone number!please enter a valid pan number!");
+		assertEquals(response.getMessage(),controllerservice.validationcheck(data).getMessage());
+	}
+	@Test
+    void check9() {
+		String date="01/06/199";
+		RegistrationData data = new RegistrationData("rohith4282","Rohith@4282","rajeshwar","shivanathri","rohithshivanath@gmail.com","male",date,"9177144155","JBVPS5610D","3-42 minaroad duudenapally","karimnagar","telangana","india",505472,"savings");
+		ResponseData response = new ResponseData("rohith4282","failure",400,"please enter a valid dob!");
 		assertEquals(response.getMessage(),controllerservice.validationcheck(data).getMessage());
 	}
 }

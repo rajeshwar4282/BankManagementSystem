@@ -79,6 +79,7 @@ public class ControllerService {
 	}
 	//function for checking username availability
 	public static boolean usernameavailability(String username ) {
+		
 		return !username.contains("admin");
 	}
 	public static boolean isValidUsername(String username) {
@@ -97,15 +98,13 @@ public class ControllerService {
   
         Pattern p = Pattern.compile(regex);
   
-        if (password == null) {
-            return false;
-        }
+        
         Matcher m = p.matcher(password);
         return m.matches();
     }
 	//function for checking firstname,lastname
 	public static boolean isValidNames(String name) {
-		return name.matches( "[a-z][a-z]*" );
+		return name.matches( "[A-Z][a-z]*" );
 	}
 	//function for validating email id
 	public static boolean isValidEmailId(String email ) {

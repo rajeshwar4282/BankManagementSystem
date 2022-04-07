@@ -10,4 +10,6 @@ import com.bms.authserver.models.CustomerCredentials;
 @Repository
 public interface CustomerCredentialsRepository extends JpaRepository<CustomerCredentials,Long>{
 
+	CustomerCredentials findByUsername(String username);
+
 }

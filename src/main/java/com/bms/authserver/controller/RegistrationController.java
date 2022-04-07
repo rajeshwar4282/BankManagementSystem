@@ -12,6 +12,11 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.bms.authserver.models.AccountDetail;
+import com.bms.authserver.models.CustomerAddress;
+import com.bms.authserver.models.CustomerCredentials;
+import com.bms.authserver.models.CustomerDetail;
 import com.bms.authserver.pojo.RegistrationData;
 import com.bms.authserver.pojo.ResponseData;
 import com.bms.authserver.service.ControllerService;
@@ -41,7 +46,10 @@ public class RegistrationController {
 		
 		ResponseData response = controllerservice.validationcheck(registrationData);
 		if(response.getStatus().contains("success")) {
-			controllerServiceJpa.registrationdatainsertion(registrationData);
+			CustomerCredentials cc = controllerServiceJpa.customercredentialsinsertion(registrationData);
+			CustomerDetail cd=controllerServiceJpa.customerdetailinsertion(registrationData);
+			CustomerAddress ca = controllerServiceJpa.customeraddressinsertion(registrationData);
+			AccountDetail ad = controllerServiceJpa.accountdetailinsertion(registrationData); 
 		}
 		return response;
 	}

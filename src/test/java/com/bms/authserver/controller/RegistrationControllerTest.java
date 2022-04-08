@@ -36,7 +36,7 @@ private MockMvc mockMvc;
 @Autowired
 private WebApplicationContext wc;
 
-
+ControllerService controllerservice = new ControllerService();
 
 static ObjectMapper MAPPER = new ObjectMapper();
 
@@ -46,7 +46,7 @@ public void setUp() throws JsonProcessingException, Exception {
 }
 
 @Test
-public void saveCustomer() throws JsonProcessingException, Exception {
+public void controllerTest1() throws JsonProcessingException, Exception {
 	
 	String date="01/06/1999";
 	RegistrationData data = new RegistrationData("rohith4282","Rohith@4282","Rajeshwar","Shivanathri","rohithshivanathri@gmail.com","male",date,"9177144155","JBVPS5610D","3-42 minaroad duudenapally","karimnagar","telangana","india","505472","savings");
@@ -59,7 +59,34 @@ public void saveCustomer() throws JsonProcessingException, Exception {
 			.andReturn();
     assertEquals(json1, mvcResult.getResponse().getContentAsString());
 }
-ControllerService controllerservice = new ControllerService();
+@Test
+public void controllerTest2() throws JsonProcessingException, Exception {
+	
+	String date="01/06/1999";
+	RegistrationData data = new RegistrationData("rohith4282","","Rajeshwar","Shivanathri","rohithshivanathri@gmail.com","male",date,"9177144155","JBVPS5610D","3-42 minaroad duudenapally","karimnagar","telangana","india","505472","savings");
+	ResponseData response = new ResponseData("rohith4282","failure",404,"password,cannot be empty");	
+	String json = MAPPER.writeValueAsString(data);
+	String json1 = MAPPER.writeValueAsString(response);
+	MvcResult mvcResult = mockMvc
+			.perform(MockMvcRequestBuilders.post("/register")
+					.content(json).contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
+			.andReturn();
+    assertEquals(json1, mvcResult.getResponse().getContentAsString());
+}
+@Test
+public void controllerTest3() throws JsonProcessingException, Exception {
+	
+	String date="01/06/1999";
+	RegistrationData data = new RegistrationData("rohith4282","brand@9177","Rajeshwar","Shivanathri","rohithshivanathri@gmail.com","male",date,"9177144155","JBVPS5610D","3-42 minaroad duudenapally","karimnagar","telangana","india","505472","savings");
+	ResponseData response = new ResponseData("rohith4282","failure",300,"password doesn't meet criteria!");	
+	String json = MAPPER.writeValueAsString(data);
+	String json1 = MAPPER.writeValueAsString(response);
+	MvcResult mvcResult = mockMvc
+			.perform(MockMvcRequestBuilders.post("/register")
+					.content(json).contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
+			.andReturn();
+    assertEquals(json1, mvcResult.getResponse().getContentAsString());
+}
 
 //testing for suucessful validation
 @Test
@@ -137,21 +164,28 @@ public void check9() {
 public void check10() {
 	String date="01/06/1999";
 	RegistrationData data = new RegistrationData("rohith4282","Rohith@4282","Rajeshwar","Shivanathri","rohithshivanathri@gmail.com","male",date,"9177144155","JBVPS5610D","3-42 minaroad duudenapally","karimnagar","telangana","india","505472","nothing");
-	ResponseData response = new ResponseData("rohith4282","success",200,"please enter a valid accounttype (savings/current/loanaccount)");	
+	ResponseData response = new ResponseData("rohith4282","failure",200,"please enter a valid accounttype (savings/current/loanaccount)");	
 	assertEquals(response.getMessage(),controllerservice.validationcheck(data).getMessage());
 }
 @Test
 public void check11() {
 	String date="01/06/1999";
 	RegistrationData data = new RegistrationData("rohith4282","Rohith@4282","rajes1hwar","Shivanathri","rohithshivanathri@gmail.com","male",date,"9177144155","JBVPS5610D","3-42 minaroad duudenapally","karimnagar","telangana","india","505472","savings");
-	ResponseData response = new ResponseData("rohith4282","success",200,"please enter a valid firstname!");	
+	ResponseData response = new ResponseData("rohith4282","failure",200,"please enter a valid firstname!");	
 	assertEquals(response.getMessage(),controllerservice.validationcheck(data).getMessage());
 }
 @Test
 public void check12() {
 	String date="01/06/1999";
 	RegistrationData data = new RegistrationData("rohith4282","Rohith@4282","Rajeshwar","shivanathri","rohtihshivanatrhi@gmail.com","male",date,"9177144155","jbvps5610d","3-42 minaroad duudenapally","karimnagar","telangana","india","505472","savings");
-	ResponseData response = new ResponseData("rohith4282","success",200,"please enter a valid lastname!please enter a valid pan number!");	
+	ResponseData response = new ResponseData("rohith4282","failure",200,"please enter a valid lastname!please enter a valid pan number!");	
+	assertEquals(response.getMessage(),controllerservice.validationcheck(data).getMessage());
+}
+@Test
+public void check13() {
+	String date="01/06/1999";
+	RegistrationData data = new RegistrationData("9177144155","Rohith@4282","Rajeshwar","shivanathri","rohtihshivanatrhi@gmail.com","male",date,"9177144155","jbvps5610d","3-42 minaroad duudenapally","karimnagar","telangana","india","505472","savings");
+	ResponseData response = new ResponseData("rohith4282","failure",200,"please enter a valid username (cannot be phone number / email id /cannot contain special characters )please enter a valid lastname!please enter a valid pan number!");	
 	assertEquals(response.getMessage(),controllerservice.validationcheck(data).getMessage());
 }
 }

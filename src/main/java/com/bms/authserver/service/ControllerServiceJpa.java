@@ -74,6 +74,12 @@ public class ControllerServiceJpa {
         accountDetailRepository.save(ad);
         return ad;
 	}
-	
+	public boolean isUsernameAvailable(String username) {
+		CustomerCredentials customerCredentials = customerCredentialsRepository.findByUsername(username);
+		if(customerCredentials == null)
+			return true;
+		else
+		return false;
+	}
 	
 }

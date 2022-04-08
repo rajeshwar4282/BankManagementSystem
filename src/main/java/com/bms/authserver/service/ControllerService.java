@@ -3,6 +3,7 @@ package com.bms.authserver.service;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bms.authserver.pojo.RegistrationData;
@@ -10,7 +11,8 @@ import com.bms.authserver.pojo.ResponseData;
 @Service
 public class ControllerService {
 	
-
+	@Autowired
+	ControllerServiceJpa controllerServiceJpa;
 	public ResponseData validationcheck( RegistrationData data) {
 		
 		ResponseData response = new ResponseData(data.getUsername(),"success",200,"successfully registered!");
@@ -78,10 +80,10 @@ public class ControllerService {
 		return response;
 	}
 	//function for checking username availability
-	public static boolean usernameavailability(String username ) {
-		
-		return !username.contains("admin");
-	}
+	public boolean usernameavailability(String username ) {
+		return controllerServiceJpa.isUsernameAvailable(username);
+	}	
+
 	public static boolean isValidUsername(String username) {
 		String regex = "^[A-Za-z]\\w{5,29}$";
         Pattern p = Pattern.compile(regex);

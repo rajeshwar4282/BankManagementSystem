@@ -2,6 +2,8 @@ plugins {
 	id 'org.springframework.boot' version '2.6.4'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
+	 id "org.sonarqube" version "3.3"
+	 id "jacoco"
 }
 
 group = 'com.bms'
@@ -13,7 +15,8 @@ repositories {
 }
 
 dependencies {
-
+testImplementation('junit:junit:4.13')
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
@@ -26,9 +29,34 @@ dependencies {
 	testImplementation 'org.springframework.security:spring-security-test'
 	implementation group: 'org.hibernate', name: 'hibernate-validator', version: '8.0.0.Alpha2'
     implementation("org.springdoc:springdoc-openapi-ui:1.4.6")
-		
+	
 }
 
+jacocoTestReport{
+    additionalSourceDirs.from = files(sourceSets.main.allJava.srcDirs)
+    reports {
+        html.enabled true
+        xml.enabled false
+        csv.enabled false
+        html.destination file("build/reports/jacoco/html")
+    }
+    executionData.from = files('build/jacoco/test.exec')    
+}
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+def sonarqubeURL = "http://localhost:9000"
+sonarqube {
+    properties {
+        property 'sonar.projectKey', 'bms'
+        property "sonar.language","java"
+       property "sonar.java.coveragePlugin","jacoco"
+     
+       property "sonar.inclusions","/src/main/**/*.java"
+      
+       
+    }
+}
+ 
+project.tasks["sonarqube"].dependsOn 'test'

@@ -43,26 +43,16 @@ public class ControllerServiceJpa {
 	AccountMasterRepository accountMasterRepository;
 	
 	
-	public CustomerCredentials customercredentialsinsertion(RegistrationData obj) {
-		CustomerCredentials cc= new CustomerCredentials(obj.getUsername(),CommonUtils.bcryptPasswordEncoder(obj.getPassword()));
-		customerCredentialsRepository.save(cc);
-		return cc;
-	}
-	public CustomerDetail customerdetailinsertion(RegistrationData obj) throws ParseException {
-		CustomerCredentials cc = customerCredentialsRepository.findByUsername(obj.getUsername()); 
+	
+	public void customerdetailinsertion(RegistrationData obj) throws ParseException {
+		CustomerCredentials cc = new CustomerCredentials(obj.getUsername(),CommonUtils.bcryptPasswordEncoder(obj.getPassword()));
 		CustomerDetail cd= new CustomerDetail(cc,obj.getFirstName(),obj.getLastName(),obj.getEmail(),obj.getGender(), new SimpleDateFormat("dd/MM/yyyy").parse(obj.getDob()),obj.getContact(),obj.getPan());
-		customerDetailRepository.save(cd);
-		return cd;
-	}
-	public CustomerAddress customeraddressinsertion(RegistrationData obj) {
-		
-		CustomerCredentials cc = customerCredentialsRepository.findByUsername(obj.getUsername());
-		CustomerDetail cd = customerDetailRepository.getById(cc.getId());
 		CustomerAddress ca = new CustomerAddress(cd,obj.getAddress(),obj.getCity(),obj.getState(),obj.getPincode(),obj.getCountry(),"Y");
 		customerAddressRepository.save(ca);
-		return ca;
+		accountdetailinsertion( obj);
 	}
-	public AccountDetail accountdetailinsertion(RegistrationData obj) {
+	
+	public void accountdetailinsertion(RegistrationData obj) {
 		CustomerCredentials cc = customerCredentialsRepository.findByUsername(obj.getUsername());
 		CustomerDetail cd = customerDetailRepository.getById(cc.getId());
 		AccountMaster am1 = accountMasterRepository.findByAccountType(obj.getAccountType());
@@ -72,7 +62,7 @@ public class ControllerServiceJpa {
         }
         AccountDetail ad = new AccountDetail(cd,String.valueOf(rand),am1);
         accountDetailRepository.save(ad);
-        return ad;
+ 
 	}
 	public boolean isUsernameAvailable(String username) {
 		CustomerCredentials customerCredentials = customerCredentialsRepository.findByUsername(username);

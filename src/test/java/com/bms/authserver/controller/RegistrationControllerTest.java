@@ -50,7 +50,7 @@ public void saveCustomer() throws JsonProcessingException, Exception {
 	
 	String date="01/06/1999";
 	RegistrationData data = new RegistrationData("rohith2767","Rohith@4282","Rajeshwar","Shivanathri","rohithshivanathri@gmail.com","male",date,"9177144155","JBVPS5610D","3-42 minaroad duudenapally","karimnagar","telangana","india","505472","savings");
-	ResponseData response = new ResponseData("rohith2767","success",200,"successfully registered!");	
+	ResponseData response = new ResponseData("rohith2767","failure",400,"username is not available. Please enter another username.");	
 	String json = MAPPER.writeValueAsString(data);
 	String json1 = MAPPER.writeValueAsString(response);
 	MvcResult mvcResult = mockMvc
@@ -65,36 +65,36 @@ public void saveCustomer() throws JsonProcessingException, Exception {
 public void saveCustomer1() throws JsonProcessingException, Exception {
 	
 	String date="01/06/1999";
-	RegistrationData data = new RegistrationData("rohith14415","Rohith@4282","Rajeshwar","Shivanathri","rohithshivanathri@gmail.com","male",date,"9177144155","JBVPS5610D","3-42 minaroad duudenapally","karimnagar","telangana","india","505472","savings");
-	ResponseData response = new ResponseData("rohith14415","failure",400,"username is not available. Please enter another username.");	
+	RegistrationData data = new RegistrationData("rohith2767","Rohith@4282","Rajeshwar","Shivanathri","rohithshivanathri@gmail.com","male",date,"9177144155","JBVPS5610D","3-42 minaroad duudenapally","karimnagar","telangana","india","505472","savings");
+	ResponseData response = new ResponseData("rohith2767","success",200,"successfully registered!");	
 	String json = MAPPER.writeValueAsString(data);
 	String json1 = MAPPER.writeValueAsString(response);
 	MvcResult mvcResult = mockMvc
 			.perform(MockMvcRequestBuilders.post("/register")
 					.content(json).contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
 			.andReturn();
-    assertEquals( mvcResult.getResponse().getContentAsString(),json1);
+    assertEquals(json1, mvcResult.getResponse().getContentAsString());
 }
 
 
 ControllerService controllerservice = new ControllerService();
 
 //testing for suucessful validation
-//@Test
-//public void check1() throws Exception {
-//	String date="01/06/1999";
-//	RegistrationData data = new RegistrationData("rohith42821","Rohith@4282","Rajeshwar","Shivanathri","rohithshivanathri@gmail.com","male",date,"9177144155","JBVPS5610D","3-42 minaroad duudenapally","karimnagar","telangana","india","505472","savings");
-//	ResponseData response = new ResponseData("rohith42821","success",200,"successfully registered!");	
-//	
-//	String json = MAPPER.writeValueAsString(data);
-//	String json1 = MAPPER.writeValueAsString(response);
-//	MvcResult mvcResult = mockMvc
-//			.perform(MockMvcRequestBuilders.post("/register")
-//					.content(json).contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
-//			.andReturn();
-//    assertEquals(json1, mvcResult.getResponse().getContentAsString());
-//	
-//}
+@Test
+public void check1() throws Exception {
+	String date="01/06/1999";
+	RegistrationData data = new RegistrationData("","Rohith@4282","Rajeshwar","Shivanathri","rohithshivanathri@gmail.com","male",date,"9177144155","JBVPS5610D","3-42 minaroad duudenapally","karimnagar","telangana","india","505472","savings");
+	ResponseData response = new ResponseData("","failure",404,"username,cannot be empty");	
+	
+	String json = MAPPER.writeValueAsString(data);
+	String json1 = MAPPER.writeValueAsString(response);
+	MvcResult mvcResult = mockMvc
+			.perform(MockMvcRequestBuilders.post("/register")
+					.content(json).contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
+			.andReturn();
+    assertEquals(json1, mvcResult.getResponse().getContentAsString());
+	
+}
 //testing for password validation
 @Test
 public void check2() throws Exception {

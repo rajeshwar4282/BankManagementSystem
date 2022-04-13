@@ -46,10 +46,7 @@ public class RegistrationController {
 		
 		ResponseData response = controllerservice.validationcheck(registrationData);
 		if(response.getStatus().contains("success")) {
-			CustomerCredentials cc = controllerServiceJpa.customercredentialsinsertion(registrationData);
-			CustomerDetail cd=controllerServiceJpa.customerdetailinsertion(registrationData);
-			CustomerAddress ca = controllerServiceJpa.customeraddressinsertion(registrationData);
-			AccountDetail ad = controllerServiceJpa.accountdetailinsertion(registrationData); 
+			controllerServiceJpa.customerdetailinsertion(registrationData);
 		}
 		return response;
 	}

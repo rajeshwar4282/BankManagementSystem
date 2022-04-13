@@ -66,7 +66,7 @@ public class ControllerService {
 		}
 		else {
 			response.setCode(400); 
-			response.setMessage("username is not available");
+			response.setMessage("username is not available. Please enter another username.");
 			response.setStatus("failure");
 		}
 		
